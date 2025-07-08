@@ -6,9 +6,9 @@ from langchain_openai import ChatOpenAI
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def qa_agent(memory, uploaded_file, question):
-    model = ChatOpenAI(model="gpt-3.5-turbo",
-                       openai_api_key="sk-CduDoQyNF5Ml0XKVDA6A2ZVHgsmLRje5GIY44xVYPb6nYGd0",
-                       openai_api_base="https://api.aigc369.com/v1")
+    model = ChatOpenAI(model="deepseek-chat",
+                       openai_api_key="sk-9c68954ad73c4186bf05c1aac5758c7a",
+                       openai_api_base="https://api.deepseek.com/v1")
 
     file_content = uploaded_file.read()
     temp_file_path = "temp.pdf"
@@ -26,8 +26,8 @@ def qa_agent(memory, uploaded_file, question):
 
     texts = text_splitter.split_documents(docs)
     embeddings_model = OpenAIEmbeddings(
-        openai_api_key="sk-CduDoQyNF5Ml0XKVDA6A2ZVHgsmLRje5GIY44xVYPb6nYGd0",
-        openai_api_base="https://api.aigc369.com/v1")
+        openai_api_key="sk-9c68954ad73c4186bf05c1aac5758c7a",
+        openai_api_base="https://api.deepseek.com/v1")
     db = FAISS.from_documents(texts, embeddings_model)
     retriever = db.as_retriever()
     qa = ConversationalRetrievalChain.from_llm(
