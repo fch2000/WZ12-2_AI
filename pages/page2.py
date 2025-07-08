@@ -3,8 +3,8 @@ from langchain.memory import ConversationBufferMemory
 from utils2 import qa_agent
 
 st.set_page_config(
-    page_title="WZ12-2油田AI助手",
-    page_icon="🌊",
+    page_title="PDF问答工具",
+    page_icon="📑",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -26,8 +26,17 @@ st.markdown("<p class='subtitle'>为您提供专业的技术咨询与支持</p>"
 st.divider()
 
 with st.sidebar:
+    clearpage = st.button("🔄️ 开始新的提问")
+    if clearpage:
+        st.session_state["memory2"] = ConversationBufferMemory(
+            return_messages=True,
+            memory_key="chat_history",
+            output_key="answer"
+        )
+    st.divider()
     st.markdown("### 帮助与支持")
     st.markdown("🔑 [获取DeepSeek API key](https://platform.deepseek.com/)")
+    st.markdown("🗝️ [获取OpenAI API key](https://api.aigc369.com/register?aff=8Xgg)")
     st.markdown("📧 联系我们: fengchh6@cnooc.com.cn")
     st.divider()
     st.markdown("ℹ️ **版本**: v1.0.0")
@@ -55,7 +64,9 @@ if "chat_history" in st.session_state:
         for i in range(0, len(st.session_state["chat_history"]), 2):
             human_message = st.session_state["chat_history"][i]
             ai_message = st.session_state["chat_history"][i+1]
+            st.markdown("#### 提问：")
             st.write(human_message.content)
+            st.markdown("#### 解答")
             st.write(ai_message.content)
             if i < len(st.session_state["chat_history"]) - 2:
                 st.divider()

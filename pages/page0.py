@@ -26,6 +26,7 @@ st.divider()
 with st.sidebar:
     st.markdown("### 帮助与支持")
     st.markdown("🔑 [获取DeepSeek API key](https://platform.deepseek.com/)")
+    st.markdown("🗝️ [获取OpenAI API key](https://api.aigc369.com/register?aff=8Xgg)")
     st.markdown("📧 联系我们: fengchh6@cnooc.com.cn")
     st.divider()
     st.markdown("ℹ️ **版本**: v1.0.0")
@@ -40,8 +41,8 @@ with st.expander("ℹ️ 系统功能介绍", expanded=False):
 
     ### 💡 使用技巧
     - 使用侧边栏切换不同功能，获取API KEY和联系作者
-    - AI聊天助手：与AI进行对话，通过侧边栏“开始新对话”按钮创建新对话
-    - 智能PDF问答工具：上传PDF文件后，对文件内容提问，通过下拉框回顾历史问题
+    - AI聊天助手：与AI进行对话，通过侧边栏“开始新的对话”按钮创建新对话
+    - 智能PDF问答工具：上传PDF文件后，对文件内容提问，通过下拉框回顾历史问题，通过侧边栏“开始新的提问”按钮刷新回答
     - AI搜索工具：对与石油工业或技术相关问题搜索，文末可查看参考链接
     """)
 

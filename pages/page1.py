@@ -3,8 +3,8 @@ from langchain.memory import ConversationBufferMemory
 from utils1 import get_chat_response
 
 st.set_page_config(
-    page_title="WZ12-2油田AI助手",
-    page_icon="🌊",
+    page_title="AI聊天助手",
+    page_icon="☁️",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -26,7 +26,7 @@ st.markdown("<p class='subtitle'>为您提供专业的技术咨询与支持</p>"
 st.divider()
 
 with st.sidebar:
-    clearpage = st.button("➕ 开始新对话")
+    clearpage = st.button("➕ 开始新的对话")
     if clearpage:
         st.session_state["memory1"] = ConversationBufferMemory(return_messages=True)
         st.session_state["messages"] = [{"role": "ai",
@@ -34,6 +34,7 @@ with st.sidebar:
     st.divider()
     st.markdown("### 帮助与支持")
     st.markdown("🔑 [获取DeepSeek API key](https://platform.deepseek.com/)")
+    st.markdown("🗝️ [获取OpenAI API key](https://api.aigc369.com/register?aff=8Xgg)")
     st.markdown("📧 联系我们: fengchh6@cnooc.com.cn")
     st.divider()
     st.markdown("ℹ️ **版本**: v1.0.0")

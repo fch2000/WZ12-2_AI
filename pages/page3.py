@@ -2,8 +2,8 @@ import streamlit as st
 from utils3 import generate_script
 
 st.set_page_config(
-    page_title="WZ12-2油田AI助手",
-    page_icon="🌊",
+    page_title="AI搜索助手",
+    page_icon="❓",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -27,6 +27,7 @@ st.divider()
 with st.sidebar:
     st.markdown("### 帮助与支持")
     st.markdown("🔑 [获取DeepSeek API key](https://platform.deepseek.com/)")
+    st.markdown("🗝️ [获取OpenAI API key](https://api.aigc369.com/register?aff=8Xgg)")
     st.markdown("📧 联系我们: fengchh6@cnooc.com.cn")
     st.divider()
     st.markdown("ℹ️ **版本**: v1.0.0")
