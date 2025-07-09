@@ -6,13 +6,14 @@ from langchain_openai import ChatOpenAI
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
 
-def qa_agent(memory, uploaded_file, temp_file_path, question):
+def qa_agent(memory, uploaded_file, question):
     model = ChatOpenAI(model="deepseek-chat",
                        openai_api_key="sk-9c68954ad73c4186bf05c1aac5758c7a",
                        openai_api_base="https://api.deepseek.com/v1")
 
     # 保存文件
     file_content = uploaded_file.read()
+    temp_file_path = "temp.pdf"
     with open(temp_file_path, "wb") as temp_file:
         temp_file.write(file_content)
 

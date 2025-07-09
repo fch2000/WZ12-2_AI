@@ -106,13 +106,6 @@ if "memory2" not in st.session_state:
 
 # 上传文件
 uploaded_file = st.file_uploader("", type="pdf")
-if uploaded_file:
-    # 创建临时文件（delete=False 防止自动删除）
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
-        # 写入上传的文件内容
-        temp_file.write(uploaded_file.getbuffer())
-        temp_file_path = temp_file.name  # 获取临时文件路径
-    st.success(f"文件已临时保存到: {temp_file_path}")
 
 # 用户输入
 question = st.chat_input("请输入您的问题...", disabled=not uploaded_file)
@@ -121,7 +114,7 @@ question = st.chat_input("请输入您的问题...", disabled=not uploaded_file)
 if uploaded_file and question:
     with st.spinner("⏳ AI正在思考中，请稍等..."):
         response = qa_agent(st.session_state["memory2"],
-                            uploaded_file, temp_file_path, question)
+                            uploaded_file, question)
     st.subheader("📝 解答：")
     st.write(response["answer"])
     st.session_state["chat_history"] = response["chat_history"]
