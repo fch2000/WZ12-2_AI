@@ -6,16 +6,10 @@ from langchain_openai import ChatOpenAI
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
 
-def qa_agent(memory, uploaded_file, question):
+def qa_agent(memory, uploaded_file, temp_file_path, question):
     model = ChatOpenAI(model="deepseek-chat",
                        openai_api_key="sk-9c68954ad73c4186bf05c1aac5758c7a",
                        openai_api_base="https://api.deepseek.com/v1")
-
-    # 获取桌面路径
-    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-
-    # 构建完整的文件路径
-    temp_file_path = os.path.join(desktop_path, uploaded_file.name)
 
     # 保存文件
     file_content = uploaded_file.read()

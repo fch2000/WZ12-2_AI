@@ -1,6 +1,7 @@
 import streamlit as st
 from langchain.memory import ConversationBufferMemory
 from utils2 import qa_agent
+import tempfile
 
 # 页面设置
 st.set_page_config(
@@ -103,15 +104,24 @@ if "memory2" not in st.session_state:
         output_key="answer"
     )
 
-# 上传文件和输入
+# 上传文件
 uploaded_file = st.file_uploader("", type="pdf")
+if uploaded_file:
+    # 创建临时文件（delete=False 防止自动删除）
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
+        # 写入上传的文件内容
+        temp_file.write(uploaded_file.getbuffer())
+        temp_file_path = temp_file.name  # 获取临时文件路径
+    st.success(f"文件已临时保存到: {temp_file_path}")
+
+# 用户输入
 question = st.chat_input("请输入您的问题...", disabled=not uploaded_file)
 
 # 获取AI回复
 if uploaded_file and question:
     with st.spinner("⏳ AI正在思考中，请稍等..."):
         response = qa_agent(st.session_state["memory2"],
-                            uploaded_file, question)
+                            uploaded_file, temp_file_path, question)
     st.subheader("📝 解答：")
     st.write(response["answer"])
     st.session_state["chat_history"] = response["chat_history"]
